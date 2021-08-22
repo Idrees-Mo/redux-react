@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getPosts } from "../store/actions/posts";
+import { getPosts, deletePost } from "../store/actions/posts";
 import PostItem from "./PostItem";
 
-const PostsList = ({ getPosts, posts }) => {
+const PostsList = ({ getPosts, posts, deletePost }) => {
   useEffect(() => {
     getPosts();
     // eslint-disable-next-line
@@ -13,7 +13,7 @@ const PostsList = ({ getPosts, posts }) => {
       PostsList
       {posts.map((post) => {
         console.log(post);
-        return <PostItem key={post.id} post={post} />;
+        return <PostItem key={post.id} post={post} deletePost={deletePost} />;
       })}
     </div>
   );
@@ -25,4 +25,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getPosts })(PostsList);
+export default connect(mapStateToProps, { getPosts, deletePost })(PostsList);

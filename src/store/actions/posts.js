@@ -1,4 +1,4 @@
-import { GET_POSTS } from "../types";
+import { GET_POSTS, DELETE_POST } from "../types";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -11,4 +11,11 @@ export const getPosts = () => async (dispatch) => {
   } catch (err) {
     console.log(err.message);
   }
+};
+
+export const deletePost = (id) => (dispatch) => {
+  dispatch({
+    type: DELETE_POST,
+    payload: id,
+  });
 };
